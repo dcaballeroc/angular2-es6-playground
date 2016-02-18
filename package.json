@@ -1,0 +1,26 @@
+{
+  "name": "angular2-es6-playground",
+  "version": "0.0.1",
+  "description": "Experimenting with Angular 2 with ES6",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack ./src/app.js ./src/bundle.js --module-bind 'js=babel'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dcaballeroc/angular2-es6-playground.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dcaballeroc/angular2-es6-playground/issues"
+  },
+  "homepage": "https://github.com/dcaballeroc/angular2-es6-playground#readme",
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-loader": "^6.2.3",
+    "babel-preset-es2015": "^6.5.0",
+    "webpack": "^1.12.13"
+  }
+}
