@@ -14,12 +14,18 @@ module.exports = {
     path: PATHS.build,
     filename: 'bundle.js'
   },
+  devtool: 'source-map',
   module: {
     loaders: [
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /(node_modules|.spec.js)/
+        include: PATHS.app
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        include: PATHS.app
       }
     ],
     noParse: []
@@ -32,7 +38,7 @@ module.exports = {
     progress: true,
     stats: 'errors-only',
     host: process.env.HOST,
-    port: process.env.PORT
+    port: process.env.PORT || 3000
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
