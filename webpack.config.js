@@ -16,6 +16,13 @@ module.exports = {
   },
   devtool: 'source-map',
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        include: PATHS.app
+      }
+    ],
     loaders: [
       {
         test: /\.js$/,
@@ -29,6 +36,10 @@ module.exports = {
       }
     ],
     noParse: []
+  },
+  resolve: {
+    modulesDirectories: ['node_modules'],
+    extensions: ['', '.js']
   },
   devServer: {
     contentBase: PATHS.build,
