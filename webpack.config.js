@@ -7,9 +7,7 @@ const PATHS = {
 };
 
 module.exports = {
-  entry: {
-    app: PATHS.app
-  },
+  entry: ['babel-polyfill', PATHS.app],
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
