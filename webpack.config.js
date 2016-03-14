@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: PATHS.build,
     filename: 'bundle.js',
-    chunkFileName: '[id].js'
+    chunkFileName: 'bundle.[id].[hash].js'
   },
   devtool: 'source-map',
   module: {
@@ -32,12 +32,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractText.extract('style', 'css!postcss'),
+        loader: ExtractText.extract('style', 'css?sourceMap!postcss'),
         include: PATHS.app
       },
       {
         test: /\.scss$/,
-        loader: ExtractText.extract('style', 'css!postcss'),
+        loader: ExtractText.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
         include: PATHS.app
       }
     ],
