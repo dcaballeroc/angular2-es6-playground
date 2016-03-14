@@ -1,6 +1,7 @@
 var path = require('path');
 var autoprefixer = require('autoprefixer');
-var webpack = require('webpack');
+var ExtractText = require('extract-text-webpack-plugin');
+var Webpack = require('webpack');
 
 var PATHS = {
   app: path.join(__dirname, 'app'),
@@ -11,7 +12,8 @@ module.exports = {
   entry: ['babel-polyfill', PATHS.app],
   output: {
     path: PATHS.build,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    chunkFileName: 'bundle.[id].[hash].js'
   },
   devtool: 'source-map',
   module: {
@@ -30,12 +32,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css', 'postcss'],
+        loader: ExtractText.extract('style', 'css?sourceMap!postcss'),
         include: PATHS.app
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss', 'sass'],
+        loader: ExtractText.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
         include: PATHS.app
       }
     ],
@@ -68,6 +70,7 @@ module.exports = {
     port: process.env.PORT || 3000
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new ExtractText('bundle.css', { allChunks: true }),
+    new Webpack.HotModuleReplacementPlugin()
   ]
 };

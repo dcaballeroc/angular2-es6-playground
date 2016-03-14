@@ -23,6 +23,7 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 bundle.js
+bundle.css
 
 # Dependency directory
 node_modules
@@ -35,7 +36,9 @@ node_modules
 
 # Map files
 *.js.map
+*.css.map
 *.map.js
+*.map.css
 
 # IntelliJ-based IDEs cache
 .idea
