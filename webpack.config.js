@@ -1,7 +1,8 @@
 var path = require('path');
-const webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
+var webpack = require('webpack');
 
-const PATHS = {
+var PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
 };
@@ -29,12 +30,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css'],
+        loaders: ['style', 'css', 'postcss'],
         include: PATHS.app
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
+        loaders: ['style', 'css', 'postcss', 'sass'],
         include: PATHS.app
       }
     ],
@@ -44,6 +45,18 @@ module.exports = {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js']
   },
+  postcss:[
+    autoprefixer({
+      browsers: [
+        'last 2 versions',
+        'iOS >= 7',
+        'Android >= 4',
+        'Explorer >= 10',
+        'ExplorerMobile >= 11'
+      ],
+      cascade: false
+    })
+  ],
   devServer: {
     contentBase: PATHS.build,
     historyApiFallback: true,
