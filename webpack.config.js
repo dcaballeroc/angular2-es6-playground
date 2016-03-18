@@ -10,11 +10,12 @@ var PATHS = {
 };
 
 module.exports = {
-  entry: ['babel-polyfill', PATHS.app],
+  entry: {
+    app: PATHS.app
+  },
   output: {
     path: PATHS.build,
-    filename: 'bundle.js',
-    chunkFileName: 'bundle.[id].[hash].js'
+    filename: 'bundle.js'
   },
   devtool: 'source-map',
   module: {
