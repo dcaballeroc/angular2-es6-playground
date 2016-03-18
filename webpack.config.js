@@ -4,8 +4,9 @@ var ExtractText = require('extract-text-webpack-plugin');
 var Webpack = require('webpack');
 
 var PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  app: path.resolve(__dirname, 'app'),
+  build: path.resolve(__dirname, 'build'),
+  modules: path.resolve(__dirname, 'node_modules')
 };
 
 module.exports = {
@@ -44,7 +45,7 @@ module.exports = {
     noParse: []
   },
   resolve: {
-    modulesDirectories: ['node_modules'],
+    modulesDirectories: [PATHS.modules],
     extensions: ['', '.js']
   },
   postcss:[
