@@ -33,12 +33,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractText.extract('style', 'css!postcss'),
+        loader: ExtractText.extract('style', 'css?sourceMap!postcss'),
         include: PATHS.app
       },
       {
         test: /\.scss$/,
-        loader: ExtractText.extract('style', 'css!postcss!sass'),
+        loader: ExtractText.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
         include: PATHS.app
       }
     ],
