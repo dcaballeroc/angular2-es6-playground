@@ -4,8 +4,9 @@ var ExtractText = require('extract-text-webpack-plugin');
 var Webpack = require('webpack');
 
 var PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  app: path.resolve(__dirname, 'app'),
+  build: path.resolve(__dirname, 'build'),
+  modules: path.resolve(__dirname, 'node_modules')
 };
 
 module.exports = {
@@ -32,19 +33,19 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractText.extract('style', 'css?sourceMap!postcss'),
+        loader: ExtractText.extract('style', 'css!postcss'),
         include: PATHS.app
       },
       {
         test: /\.scss$/,
-        loader: ExtractText.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
+        loader: ExtractText.extract('style', 'css!postcss!sass'),
         include: PATHS.app
       }
     ],
     noParse: []
   },
   resolve: {
-    modulesDirectories: ['node_modules'],
+    modulesDirectories: [PATHS.modules],
     extensions: ['', '.js']
   },
   postcss:[
