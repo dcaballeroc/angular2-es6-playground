@@ -4,8 +4,8 @@ var ExtractText = require('extract-text-webpack-plugin');
 var Webpack = require('webpack');
 
 var PATHS = {
-  app: path.resolve(__dirname, 'app'),
-  build: path.resolve(__dirname, 'build'),
+  app: path.join(__dirname, 'public', 'app'),
+  bundle: path.join(__dirname, 'public', 'bundle'),
   modules: path.resolve(__dirname, 'node_modules')
 };
 
@@ -14,8 +14,9 @@ module.exports = {
     app: PATHS.app
   },
   output: {
-    path: PATHS.build,
-    filename: 'bundle.js'
+    path: PATHS.bundle,
+    publicPath: '/bundle/',
+    filename: '[name].js'
   },
   devtool: 'source-map',
   module: {
@@ -43,7 +44,7 @@ module.exports = {
         include: PATHS.app
       }
     ],
-    noParse: []
+    noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/, /.+zone\.js\/lib\/.+/]
   },
   resolve: {
     modulesDirectories: [PATHS.modules],
@@ -62,7 +63,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: PATHS.build,
+    contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
     hot: true,
     inline: true,
@@ -72,7 +73,7 @@ module.exports = {
     port: process.env.PORT || 3000
   },
   plugins: [
-    new ExtractText('bundle.css', { allChunks: true }),
+    new ExtractText('app.css', { allChunks: true }),
     new Webpack.HotModuleReplacementPlugin()
   ]
 };
