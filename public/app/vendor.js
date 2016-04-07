@@ -2,8 +2,7 @@
 import 'es6-shim';
 import 'es6-promise';
 import 'es7-reflect-metadata/dist/browser';
-import 'zone.js/lib/browser/zone-microtask';
-import 'zone.js/lib/browser/long-stack-trace-zone';
+import 'zone.js/dist/zone';
 
 // Angular 2
 import 'angular2/platform/browser';
