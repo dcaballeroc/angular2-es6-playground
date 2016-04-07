@@ -19,7 +19,14 @@
     "url": "https://github.com/dcaballeroc/angular2-es6-playground/issues"
   },
   "homepage": "https://github.com/dcaballeroc/angular2-es6-playground#readme",
-  "dependencies": {},
+  "dependencies": {
+    "angular2": "^2.0.0-beta.14",
+    "es6-promise": "^3.1.2",
+    "es6-shim": "^0.35.0",
+    "es7-reflect-metadata": "^1.6.0",
+    "rxjs": "^5.0.0-beta.5",
+    "zone.js": "^0.6.9"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.7.4",
