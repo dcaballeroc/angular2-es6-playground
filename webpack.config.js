@@ -11,7 +11,8 @@ var PATHS = {
 
 module.exports = {
   entry: {
-    app: PATHS.app
+    app: path.join(PATHS.app, 'main.js'),
+    vendor: path.join(PATHS.app, 'vendor.js')
   },
   output: {
     path: PATHS.bundle,
