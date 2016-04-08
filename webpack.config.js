@@ -11,13 +11,15 @@ var PATHS = {
 
 module.exports = {
   entry: {
-    app: path.join(PATHS.app, 'main.js'),
-    vendor: path.join(PATHS.app, 'vendor.js')
+    polyfills: path.join(PATHS.app, 'polyfills.js'),
+    vendor: path.join(PATHS.app, 'vendor.js'),
+    app: path.join(PATHS.app, 'main.js')
   },
   output: {
     path: PATHS.bundle,
     publicPath: '/bundle/',
-    filename: '[name].js'
+    filename: '[name].js',
+    chunkFileName: '[id].chunk.js'
   },
   devtool: 'source-map',
   module: {
@@ -68,13 +70,16 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     inline: true,
-    progress: true,
-    stats: 'errors-only',
     host: process.env.HOST,
     port: process.env.PORT || 3000
   },
   plugins: [
     new ExtractText('app.css', { allChunks: true }),
+    new Webpack.optimize.OccurrenceOrderPlugin(true),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: ['app', 'vendor', 'polyfills'],
+      minChunks: Infinity
+    }),
     new Webpack.HotModuleReplacementPlugin()
   ]
 };
