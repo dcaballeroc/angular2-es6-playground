@@ -19,8 +19,10 @@ module.exports = {
     path: PATHS.bundle,
     publicPath: '/bundle/',
     filename: '[name].js',
-    chunkFileName: '[id].chunk.js'
+    sourceMapFileName: '[name].map',
+    chunkFilename: '[id].chunk.js'
   },
+  debug: true,
   devtool: 'source-map',
   module: {
     preLoaders: [
@@ -28,6 +30,11 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint',
         include: PATHS.app
+      },
+      {
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        include: PATHS.modules
       }
     ],
     loaders: [
