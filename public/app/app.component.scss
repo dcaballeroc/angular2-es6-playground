@@ -1,9 +1,21 @@
-body {
-  background: cornsilk;
+$header-font: Arial, Helvetica, sans-serif;
+
+h1 {
+  color: #369;
+  font-family: $header-font;
+  font-size: 250%;
 }
-.example {
-    display: flex;
-    transition: all .5s;
-    user-select: none;
-    background: linear-gradient(to bottom, white, black);
+
+h2, h3 {
+  color: #444444;
+  font-family: $header-font;
+  font-weight: lighter;
+}
+
+body {
+  margin: 2em;
+  &, input[text], button {
+    color: #888888;
+    font-family: Cambria, Georgia;
+  }
 }

@@ -52,6 +52,11 @@ module.exports = {
         test: /\.scss$/,
         loader: ExtractText.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
         include: PATHS.app
+      },
+      {
+        test: /\.html$/,
+        loader: 'raw',
+        include: PATHS.app
       }
     ],
     noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/, /.+zone\.js\/lib\/.+/]
@@ -85,7 +90,7 @@ module.exports = {
     new Webpack.optimize.OccurrenceOrderPlugin(true),
     new Webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills'],
-      minChunks: Infinity
+      minChunks: 2
     }),
     new Webpack.HotModuleReplacementPlugin()
   ]
