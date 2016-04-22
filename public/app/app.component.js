@@ -1,5 +1,6 @@
 import './app.component.scss';
 import { Component } from 'angular2/core';
+import { HeroDetailComponent } from './heroes/heroDetail.component';
 
 const HEROES = [
   { id: 11, name: 'Mr. Nice' },
@@ -20,20 +21,21 @@ const HEROES = [
     <h1>{{ title }}</h1>
     <h2>All Heroes</h2>
     <ul class="heroes">
-      <li *ngFor="#hero of heroes">
+      <li *ngFor="#hero of heroes"
+        [class.selected]="hero == selectedHero"
+        (click)="onSelect(hero)">
         <span class="badge">{{ hero.id }}</span> {{ hero.name }}
       </li>
     </ul>
-    <h2>{{ hero.name }} details</h2>
-    <div><label>ID: </label>{{ hero.id }}</div>
-    <div>
-      <label>Name: </label>
-      <input [(ngModel)]="hero.name" type="text" placeholder="name">
-    </div>
+    <hero-detail [hero]="selectedHero"></hero-detail>
     `,
+  directives: [HeroDetailComponent],
 })
 export class AppComponent {
   title = 'Tour of Heroes';
   heroes = HEROES;
-  hero = this.heroes[0];
+
+  onSelect(hero) {
+    this.selectedHero = hero;
+  }
 }
