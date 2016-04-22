@@ -1,14 +1,6 @@
-$header-font: Arial, Helvetica, sans-serif;
-
-h1 {
-  color: #369;
-  font-family: $header-font;
-  font-size: 250%;
-}
-
-h2, h3 {
-  color: #444444;
-  font-family: $header-font;
+h2 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
 
@@ -17,60 +9,31 @@ body {
 }
 
 body, input[text], button {
-  color: #888888;
+  color: #888;
   font-family: Cambria, Georgia;
 }
 
-.selected {
-  background-color: #CFD8DC !important;
-  color: white;
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+
+  &:hover {
+    background-color: #cfd8dc;
+  }
+
+  &:disabled {
+    background-color: #eee;
+    color: #aaa;
+    cursor: auto;
+  }
 }
 
-.heroes {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
-
-  li {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
-
-    &.selected:hover {
-      background-color: #BBD8DC !important;
-      color: white;
-    }
-
-    &:hover {
-      color: #607D8B;
-      background-color: #DDD;
-      left: .1em;
-    }
-  }
-
-  .text {
-    position: relative;
-    top: -3px;
-  }
-
-  .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #607D8B;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
+/* everywhere else */
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
