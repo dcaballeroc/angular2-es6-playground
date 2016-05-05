@@ -43,14 +43,22 @@ module.exports = {
         loader: 'babel?cacheDirectory',
         include: PATHS.app
       },
+      // For global stylesheet
       {
-        test: /\.css$/,
-        loader: ExtractText.extract('style', 'css?sourceMap!postcss'),
+        test: /main\.scss$/,
+        loader: ExtractText.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
         include: PATHS.app
       },
+      // Per-component stylesheets
       {
         test: /\.scss$/,
-        loader: ExtractText.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
+        loaders: ['raw', 'postcss', 'sass?sourceMap'],
+        include: PATHS.app,
+        exclude: path.join(PATHS.app, 'main.scss')
+      },
+      {
+        test: /\.html$/,
+        loader: 'raw',
         include: PATHS.app
       }
     ],
@@ -81,11 +89,11 @@ module.exports = {
     port: process.env.PORT || 3000
   },
   plugins: [
-    new ExtractText('app.css', { allChunks: true }),
+    new ExtractText('app.css'),
     new Webpack.optimize.OccurrenceOrderPlugin(true),
     new Webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills'],
-      minChunks: Infinity
+      name: ['vendor', 'polyfills'],
+      minChunks: 2
     }),
     new Webpack.HotModuleReplacementPlugin()
   ]
