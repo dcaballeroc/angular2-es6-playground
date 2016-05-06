@@ -10,17 +10,11 @@ var PATHS = {
 };
 
 module.exports = {
-  entry: {
-    polyfills: path.join(PATHS.app, 'polyfills.js'),
-    vendor: path.join(PATHS.app, 'vendor.js'),
-    app: path.join(PATHS.app, 'main.js')
-  },
+  entry: path.join(PATHS.app, 'main.js'),
   output: {
     path: PATHS.bundle,
     publicPath: '/bundle/',
-    filename: '[name].js',
-    sourceMapFileName: '[name].map',
-    chunkFilename: '[id].chunk.js'
+    filename: 'app.js'
   },
   debug: true,
   devtool: 'source-map',
@@ -87,10 +81,10 @@ module.exports = {
   plugins: [
     new ExtractText('app.css'),
     new Webpack.optimize.OccurrenceOrderPlugin(true),
-    new Webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'polyfills'],
-      minChunks: 2
-    }),
+//    new Webpack.optimize.CommonsChunkPlugin({
+//      name: ['vendor', 'polyfills'],
+//      minChunks: 2
+//    }),
     new Webpack.HotModuleReplacementPlugin()
   ]
 };
