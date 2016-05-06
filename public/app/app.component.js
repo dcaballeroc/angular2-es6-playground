@@ -1,3 +1,6 @@
+import view from './app.component.html';
+import styles from './app.component.scss';
+
 import { Component } from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
 
@@ -8,9 +11,9 @@ import { HeroService } from './common/hero.service';
 
 @Component({
   selector: 'ng2-playground',
-  template: require('./app.component.html'),
+  template: view,
   styles: [
-    require('./app.component.scss'),
+    styles,
   ],
   directives: [ROUTER_DIRECTIVES],
   providers: [ROUTER_PROVIDERS, HeroService],

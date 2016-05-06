@@ -1,3 +1,6 @@
+import view from './heroes.component.html';
+import styles from './heroes.component.scss';
+
 import { Component } from 'angular2/core';
 import { Router } from 'angular2/router';
 
@@ -5,9 +8,9 @@ import { HeroService } from '../common/hero.service';
 
 @Component({
   selector: 'heroes',
-  template: require('./heroes.component.html'),
+  template: view,
   styles: [
-    require('./heroes.component.scss'),
+    styles,
   ],
 })
 export class HeroesComponent {
