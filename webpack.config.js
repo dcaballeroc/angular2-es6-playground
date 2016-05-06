@@ -64,10 +64,6 @@ module.exports = {
     ],
     noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/, /.+zone\.js\/lib\/.+/]
   },
-  resolve: {
-    modulesDirectories: [PATHS.modules],
-    extensions: ['', '.js']
-  },
   postcss:[
     autoprefixer({
       browsers: [
