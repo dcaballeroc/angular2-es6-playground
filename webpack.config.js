@@ -80,7 +80,7 @@ module.exports = {
   },
   plugins: [
     new ExtractText('app.css'),
-    new Webpack.optimize.OccurrenceOrderPlugin(true),
+//    new Webpack.optimize.OccurrenceOrderPlugin(true),
 //    new Webpack.optimize.CommonsChunkPlugin({
 //      name: ['vendor', 'polyfills'],
 //      minChunks: 2
