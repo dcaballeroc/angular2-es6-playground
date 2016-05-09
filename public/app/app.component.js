@@ -6,7 +6,7 @@ import { AsyncRoute, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'an
 
 import { HeroService } from './common/hero.service';
 
-@Component({
+@Component({ // eslint-disable-line new-cap
   selector: 'ng2-playground',
   template: view,
   styles: [
@@ -15,7 +15,7 @@ import { HeroService } from './common/hero.service';
   directives: [ROUTER_DIRECTIVES],
   providers: [ROUTER_PROVIDERS, HeroService],
 })
-@RouteConfig([
+@RouteConfig([ // eslint-disable-line new-cap
   new AsyncRoute({
     path: '/dashboard',
     name: 'Dashboard',

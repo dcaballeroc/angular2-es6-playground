@@ -10,14 +10,19 @@ var PATHS = {
 };
 
 module.exports = {
-  entry: path.join(PATHS.app, 'main.js'),
+  entry: {
+    app: path.join(PATHS.app, 'main.js'),
+    polyfills: path.join(PATHS.app, 'polyfills.js')
+  },
   output: {
     path: PATHS.bundle,
     publicPath: '/bundle/',
-    filename: 'app.js'
+    filename: '[name].js',
+    sourceMapFileName: '[name].map',
+    chunkFilename: '[id].chunk.js'
   },
   debug: true,
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   module: {
     preLoaders: [
       {
@@ -58,6 +63,10 @@ module.exports = {
     ],
     noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/, /.+zone\.js\/lib\/.+/]
   },
+  resolve: {
+    modulesDirectories: [PATHS.modules],
+    extensions: ['', '.js']
+  },
   postcss:[
     autoprefixer({
       browsers: [
@@ -80,11 +89,11 @@ module.exports = {
   },
   plugins: [
     new ExtractText('app.css'),
-//    new Webpack.optimize.OccurrenceOrderPlugin(true),
-//    new Webpack.optimize.CommonsChunkPlugin({
-//      name: ['vendor', 'polyfills'],
-//      minChunks: 2
-//    }),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      children: true,
+      minChunks: 2
+    }),
     new Webpack.HotModuleReplacementPlugin()
   ]
 };

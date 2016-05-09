@@ -6,7 +6,7 @@ import { RouteParams } from 'angular2/router';
 
 import { HeroService } from '../common/hero.service';
 
-@Component({
+@Component({ // eslint-disable-line new-cap
   selector: 'hero-detail',
   template: view,
   styles: [
