@@ -1,37 +1,37 @@
-import { Component } from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import view from './app.component.html';
+import styles from './app.component.scss';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './heroes/heroDetail.component';
+import { Component } from 'angular2/core';
+import { AsyncRoute, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+
 import { HeroService } from './common/hero.service';
 
-@Component({
+@Component({ // eslint-disable-line new-cap
   selector: 'ng2-playground',
-  template: require('./app.component.html'),
+  template: view,
   styles: [
-    require('./app.component.scss'),
+    styles,
   ],
   directives: [ROUTER_DIRECTIVES],
   providers: [ROUTER_PROVIDERS, HeroService],
 })
-@RouteConfig([
-  {
+@RouteConfig([ // eslint-disable-line new-cap
+  new AsyncRoute({
     path: '/dashboard',
     name: 'Dashboard',
-    component: DashboardComponent,
+    loader: () => System.import('./dashboard/dashboard.component').then(c => c.DashboardComponent),
     useAsDefault: true,
-  },
-  {
+  }),
+  new AsyncRoute({
     path: '/heroes',
     name: 'Heroes',
-    component: HeroesComponent,
-  },
-  {
+    loader: () => System.import('./heroes/heroes.component').then(c => c.HeroesComponent),
+  }),
+  new AsyncRoute({
     path: '/detail/:id',
     name: 'HeroDetail',
-    component: HeroDetailComponent,
-  },
+    loader: () => System.import('./heroes/heroDetail.component').then(c => c.HeroDetailComponent),
+  }),
 ])
 export class AppComponent {
   title = 'Tour of Heroes';

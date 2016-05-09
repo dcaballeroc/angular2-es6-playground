@@ -11,9 +11,8 @@ var PATHS = {
 
 module.exports = {
   entry: {
-    polyfills: path.join(PATHS.app, 'polyfills.js'),
-    vendor: path.join(PATHS.app, 'vendor.js'),
-    app: path.join(PATHS.app, 'main.js')
+    app: path.join(PATHS.app, 'main.js'),
+    polyfills: path.join(PATHS.app, 'polyfills.js')
   },
   output: {
     path: PATHS.bundle,
@@ -23,7 +22,7 @@ module.exports = {
     chunkFilename: '[id].chunk.js'
   },
   debug: true,
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
   module: {
     preLoaders: [
       {
@@ -90,9 +89,9 @@ module.exports = {
   },
   plugins: [
     new ExtractText('app.css'),
-    new Webpack.optimize.OccurrenceOrderPlugin(true),
     new Webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'polyfills'],
+      name: 'app',
+      children: true,
       minChunks: 2
     }),
     new Webpack.HotModuleReplacementPlugin()

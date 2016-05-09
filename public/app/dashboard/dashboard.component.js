@@ -1,13 +1,16 @@
+import view from './dashboard.component.html';
+import styles from './dashboard.component.scss';
+
 import { Component } from 'angular2/core';
 import { Router } from 'angular2/router';
 
 import { HeroService } from '../common/hero.service';
 
-@Component({
+@Component({ // eslint-disable-line new-cap
   selector: 'dashboard',
-  template: require('./dashboard.component.html'),
+  template: view,
   styles: [
-    require('./dashboard.component.scss'),
+    styles,
   ],
 })
 
