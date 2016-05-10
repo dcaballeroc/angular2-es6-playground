@@ -1,4 +1,5 @@
-import { Injectable } from 'angular2/core';
+import { Injectable } from '@angular/core';
+
 import HEROES from './heroes.mock';
 
 @Injectable() // eslint-disable-line new-cap

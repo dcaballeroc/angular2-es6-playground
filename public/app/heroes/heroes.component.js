@@ -1,17 +1,14 @@
-import view from './heroes.component.html';
-import styles from './heroes.component.scss';
-
-import { Component } from 'angular2/core';
-import { Router } from 'angular2/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router-deprecated';
 
 import { HeroService } from '../common/hero.service';
+import template from './heroes.component.html';
+import styles from './heroes.component.scss';
 
 @Component({ // eslint-disable-line new-cap
+  template,
+  styles: [styles],
   selector: 'heroes',
-  template: view,
-  styles: [
-    styles,
-  ],
 })
 export class HeroesComponent {
   heroes = [];

@@ -1,17 +1,14 @@
-import view from './heroDetail.component.html';
-import styles from './heroDetail.component.scss';
-
-import { Component } from 'angular2/core';
-import { RouteParams } from 'angular2/router';
+import { Component } from '@angular/core';
+import { RouteParams } from '@angular/router-deprecated';
 
 import { HeroService } from '../common/hero.service';
+import template from './heroDetail.component.html';
+import styles from './heroDetail.component.scss';
 
 @Component({ // eslint-disable-line new-cap
+  template,
+  styles: [styles],
   selector: 'hero-detail',
-  template: view,
-  styles: [
-    styles,
-  ],
 })
 export class HeroDetailComponent {
   hero = undefined;
