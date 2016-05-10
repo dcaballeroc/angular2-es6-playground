@@ -1,17 +1,15 @@
-import view from './app.component.html';
-import styles from './app.component.scss';
-
-import { Component } from 'angular2/core';
-import { AsyncRoute, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import { Component } from '@angular/core';
+import { AsyncRoute, RouteConfig,
+         ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 import { HeroService } from './common/hero.service';
+import template from './app.component.html';
+import styles from './app.component.scss';
 
 @Component({ // eslint-disable-line new-cap
+  template,
+  styles: [styles],
   selector: 'ng2-playground',
-  template: view,
-  styles: [
-    styles,
-  ],
   directives: [ROUTER_DIRECTIVES],
   providers: [ROUTER_PROVIDERS, HeroService],
 })

@@ -1,17 +1,14 @@
-import view from './dashboard.component.html';
-import styles from './dashboard.component.scss';
-
-import { Component } from 'angular2/core';
-import { Router } from 'angular2/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router-deprecated';
 
 import { HeroService } from '../common/hero.service';
+import template from './dashboard.component.html';
+import styles from './dashboard.component.scss';
 
 @Component({ // eslint-disable-line new-cap
+  template,
+  styles: [styles],
   selector: 'dashboard',
-  template: view,
-  styles: [
-    styles,
-  ],
 })
 
 export class DashboardComponent {
