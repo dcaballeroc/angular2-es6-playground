@@ -1,22 +1,24 @@
 var path = require('path');
 var autoprefixer = require('autoprefixer');
-var ExtractText = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlPlugin = require('html-webpack-plugin');
 var Webpack = require('webpack');
 
 var PATHS = {
-  app: path.join(__dirname, 'public', 'app'),
-  bundle: path.join(__dirname, 'public', 'bundle'),
+  src: path.join(__dirname, 'src'),
+  dist: path.join(__dirname, 'dist'),
   modules: path.resolve(__dirname, 'node_modules')
 };
 
 module.exports = {
   entry: {
-    app: path.join(PATHS.app, 'main.js'),
-    polyfills: path.join(PATHS.app, 'polyfills.js')
+    polyfills: './src/polyfills.js',
+    vendor: './src/vendor.js',
+    app: './src/main.js'
   },
   output: {
-    path: PATHS.bundle,
-    publicPath: '/bundle/',
+    path: PATHS.dist,
+    publicPath: 'http://localhost:3000/',
     filename: '[name].js',
     sourceMapFileName: '[name].map',
     chunkFilename: '[id].chunk.js'
@@ -28,7 +30,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'eslint',
-        include: PATHS.app
+        include: PATHS.src
       },
       {
         test: /\.js$/,
@@ -40,25 +42,25 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel?cacheDirectory',
-        include: PATHS.app
+        include: PATHS.src
       },
       // For global stylesheet
       {
-        test: /main\.scss$/,
-        loader: ExtractText.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
-        include: PATHS.app
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
+        include: PATHS.src,
+        exclude: path.join(PATHS.src, 'app')
       },
       // Per-component stylesheets
       {
         test: /\.scss$/,
         loaders: ['raw', 'postcss', 'sass?sourceMap'],
-        include: PATHS.app,
-        exclude: path.join(PATHS.app, 'main.scss')
+        include: path.join(PATHS.src, 'app'),
       },
       {
         test: /\.html$/,
         loader: 'raw',
-        include: PATHS.app
+        include: PATHS.src
       }
     ],
     noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/, /.+zone\.js\/lib\/.+/]
@@ -80,20 +82,16 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
-    hot: true,
     inline: true,
     host: process.env.HOST,
     port: process.env.PORT || 3000
   },
   plugins: [
-    new ExtractText('app.css'),
     new Webpack.optimize.CommonsChunkPlugin({
-      name: 'app',
-      children: true,
-      minChunks: 2
+      name: ['app', 'vendor', 'polyfills']
     }),
-    new Webpack.HotModuleReplacementPlugin()
+    new ExtractTextPlugin('app.css'),
+    new HtmlPlugin({ template: './src/index.html' })
   ]
 };
