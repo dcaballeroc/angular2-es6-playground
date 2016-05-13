@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: PATHS.dist,
-    publicPath: 'http://localhost:3000/',
+    publicPath: '/',
     filename: '[name].js',
     sourceMapFileName: '[name].map',
     chunkFilename: '[id].chunk.js'
@@ -59,7 +59,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'raw',
+        loader: 'html',
         include: PATHS.src
       }
     ],
@@ -83,6 +83,7 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
+    hot: true,
     inline: true,
     host: process.env.HOST,
     port: process.env.PORT || 3000
@@ -91,7 +92,8 @@ module.exports = {
     new Webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
     }),
-    new ExtractTextPlugin('app.css'),
-    new HtmlPlugin({ template: './src/index.html' })
+    new ExtractTextPlugin('[name].css'),
+    new HtmlPlugin({ template: './src/index.html' }),
+    new Webpack.HotModuleReplacementPlugin()
   ]
 };
