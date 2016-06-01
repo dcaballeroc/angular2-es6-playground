@@ -23,7 +23,6 @@ module.exports = {
     sourceMapFileName: '[name].map',
     chunkFilename: '[id].chunk.js'
   },
-  debug: true,
   devtool: 'cheap-module-source-map',
   module: {
     preLoaders: [

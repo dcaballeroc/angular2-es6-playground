@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 
-import { HeroService } from '../common/hero.service';
+import { HeroService } from '../common';
 import template from './dashboard.component.html';
 import styles from './dashboard.component.scss';
 
@@ -10,7 +10,6 @@ import styles from './dashboard.component.scss';
   styles: [styles],
   selector: 'dashboard',
 })
-
 export class DashboardComponent {
   heroes = [];
 

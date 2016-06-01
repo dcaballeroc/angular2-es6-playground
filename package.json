@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --progress --profile --color --display-error-details --display-cached",
     "build:profile": "webpack --profile --json > stats.log",
-    "lint": "eslint ./public/app",
+    "lint": "eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --progress --profile"
   },
@@ -55,6 +55,6 @@
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta.6",
-    "webpack-dev-server": "^2.0.0-beta"
+    "webpack-dev-server": "^2.1.0-beta.0"
   }
 }

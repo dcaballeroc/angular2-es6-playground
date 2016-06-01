@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 
-import { HeroService } from '../common/hero.service';
+import { HeroService } from '../common';
 import template from './heroDetail.component.html';
 import styles from './heroDetail.component.scss';
 
