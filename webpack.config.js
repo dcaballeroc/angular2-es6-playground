@@ -34,7 +34,11 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'source-map-loader',
-        include: PATHS.modules
+        include: PATHS.modules,
+        exclude: [
+          path.join(PATHS.modules, '@angular'),
+          path.join(PATHS.modules, 'rxjs')
+        ]
       }
     ],
     loaders: [
